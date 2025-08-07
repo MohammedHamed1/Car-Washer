@@ -6,8 +6,8 @@ const Referral = require("./referral.model");
 const crypto = require("crypto");
 const { generateOTP, isOTPValid } = require("../../services/otp");
 const { sendNotification } = require("../../services/notification");
-const admin = require('../../config/firebase');
-
+const admin = require("../../config/firebase");
+require("dotenv").config();
 exports.register = async (req, res) => {
   try {
     const user = new User(req.body);
@@ -24,11 +24,10 @@ exports.login = async (req, res) => {
     if (!user) return res.status(400).json({ error: "Invalid credentials" });
     const isMatch = await user.comparePassword(req.body.password);
     if (!isMatch) return res.status(400).json({ error: "Invalid credentials" });
-    const token = jwt.sign(
-      { id: user._id, role: user.role },
-      process.env.JWT_SECRET,
-      { expiresIn: "7d" }
-    );
+    const jwtSecret = process.env.JWT_SECRET || "mySecretKey";
+    const token = jwt.sign({ id: user._id, role: user.role }, jwtSecret, {
+      expiresIn: "7d",
+    });
     const userData = user.toObject();
     delete userData.password;
     res.json({ token, user: userData });
@@ -193,45 +192,50 @@ exports.getReferralStatus = async (req, res) => {
 // POST /users/phone-login-initiate
 exports.phoneLoginInitiate = async (req, res) => {
   const { phone } = req.body;
-  if (!phone) return res.status(400).json({ error: 'Phone number required' });
+  if (!phone) return res.status(400).json({ error: "Phone number required" });
   const user = await User.findOne({ phone });
   if (user) {
     return res.json({ exists: true });
   }
-  return res.status(404).json({ exists: false, message: 'User not found' });
+  return res.status(404).json({ exists: false, message: "User not found" });
 };
 
 // POST /users/phone-login-verify
 exports.phoneLoginVerify = async (req, res) => {
   const { phone, firebaseIdToken } = req.body;
-  if (!phone || !firebaseIdToken) return res.status(400).json({ error: 'Phone and firebaseIdToken required' });
+  if (!phone || !firebaseIdToken)
+    return res
+      .status(400)
+      .json({ error: "Phone and firebaseIdToken required" });
   try {
     const decoded = await admin.auth().verifyIdToken(firebaseIdToken);
     if (decoded.phone_number !== phone) {
-      return res.status(400).json({ error: 'Phone number mismatch' });
+      return res.status(400).json({ error: "Phone number mismatch" });
     }
     const user = await User.findOne({ phone });
-    if (!user) return res.status(404).json({ error: 'User not found' });
+    if (!user) return res.status(404).json({ error: "User not found" });
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET,
-      { expiresIn: '7d' }
+      { expiresIn: "7d" }
     );
     const userData = user.toObject();
     delete userData.password;
     return res.json({ token, user: userData });
   } catch (err) {
-    return res.status(401).json({ error: 'Invalid OTP or token' });
+    return res.status(401).json({ error: "Invalid OTP or token" });
   }
 };
 
 // POST /users/phone-signup-initiate
 exports.phoneSignupInitiate = async (req, res) => {
   const { phone } = req.body;
-  if (!phone) return res.status(400).json({ error: 'Phone number required' });
+  if (!phone) return res.status(400).json({ error: "Phone number required" });
   const user = await User.findOne({ phone });
   if (user) {
-    return res.status(409).json({ canRegister: false, message: 'Phone already registered' });
+    return res
+      .status(409)
+      .json({ canRegister: false, message: "Phone already registered" });
   }
   return res.json({ canRegister: true });
 };
@@ -240,26 +244,26 @@ exports.phoneSignupInitiate = async (req, res) => {
 exports.phoneSignupVerify = async (req, res) => {
   const { phone, firebaseIdToken, name, email, password, username } = req.body;
   if (!phone || !firebaseIdToken || !name || !email || !password || !username) {
-    return res.status(400).json({ error: 'Missing required fields' });
+    return res.status(400).json({ error: "Missing required fields" });
   }
   try {
     const decoded = await admin.auth().verifyIdToken(firebaseIdToken);
     if (decoded.phone_number !== phone) {
-      return res.status(400).json({ error: 'Phone number mismatch' });
+      return res.status(400).json({ error: "Phone number mismatch" });
     }
     let user = await User.findOne({ phone });
-    if (user) return res.status(409).json({ error: 'User already exists' });
+    if (user) return res.status(409).json({ error: "User already exists" });
     user = new User({ phone, name, email, password, username });
     await user.save();
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET,
-      { expiresIn: '7d' }
+      { expiresIn: "7d" }
     );
     const userData = user.toObject();
     delete userData.password;
     return res.json({ token, user: userData });
   } catch (err) {
-    return res.status(401).json({ error: 'Invalid OTP or token' });
+    return res.status(401).json({ error: "Invalid OTP or token" });
   }
 };

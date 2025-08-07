@@ -433,4 +433,5 @@ router.get("/feedbacks", (req, res) => {
   }
 });
 
+router.use("/user", require("../modules/user/user.routes"))
 module.exports = router;
