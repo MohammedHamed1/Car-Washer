@@ -1,0 +1,36 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "auto": "node auto-start.js",
+    "test-db": "node test-connection.js",
+    "connect-frontend": "node connect-frontend.js",
+    "vercel-deploy": "vercel --prod --token gXI4wkLyvcviaHEVcQuMCjGl",
+    "vercel-dev": "vercel dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "apple-signin-auth": "^2.0.0",
+    "axios": "^1.6.0",
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.0.1",
+    "express": "^5.1.0",
+    "firebase-admin": "^13.4.0",
+    "google-auth-library": "^10.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.16.1",
+    "node-cron": "^4.2.0",
+    "nodemon": "^3.1.10",
+    "qrcode": "^1.5.4",
+    "twilio": "^5.7.2"
+  }
+}

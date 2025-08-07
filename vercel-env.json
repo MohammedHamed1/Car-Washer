@@ -1,0 +1,17 @@
+{
+  "vercel": {
+    "token": "gXI4wkLyvcviaHEVcQuMCjGl",
+    "projectId": "3a45d347",
+    "orgId": "mohamedhameds-projects",
+    "domains": [
+      "https-paypasss-com-six.vercel.app",
+      "https-paypasss-com-git-main-mohamedhameds-projects-3a45d347.vercel.app",
+      "https-paypasss-c7lupjul6-mohamedhameds-projects-3a45d347.vercel.app"
+    ]
+  },
+  "environment": {
+    "MONGODB_URI": "mongodb+srv://elhadad3593:NIqGTCLDJJFOFbtf@cluster0.3vqlnfg.mongodb.net/paypass?retryWrites=true&w=majority",
+    "JWT_SECRET": "paypass_jwt_secret_key_2024_secure",
+    "NODE_ENV": "production"
+  }
+} 

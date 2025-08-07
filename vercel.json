@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "name": "paypass-backend",
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.js"
+    }
+  ],
+  "env": {
+    "MONGODB_URI": "mongodb+srv://elhadad3593:NIqGTCLDJJFOFbtf@cluster0.3vqlnfg.mongodb.net/paypass?retryWrites=true&w=majority",
+    "JWT_SECRET": "paypass_jwt_secret_key_2024_secure",
+    "NODE_ENV": "production"
+  },
+  "functions": {
+    "index.js": {
+      "maxDuration": 30
+    }
+  },
+  "regions": ["iad1"],
+  "domains": [
+    "https-paypasss-com-six.vercel.app",
+    "https-paypasss-com-git-main-mohamedhameds-projects-3a45d347.vercel.app",
+    "https-paypasss-c7lupjul6-mohamedhameds-projects-3a45d347.vercel.app"
+  ]
+} 
