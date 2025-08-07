@@ -13,12 +13,7 @@ connectDB();
 const app = express();
 
 // CORS configuration for frontend
-app.use(cors({
-  origin: FRONTEND_CONFIG.cors.origin,
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+app.use(cors());
 
 app.use(express.json());
 
