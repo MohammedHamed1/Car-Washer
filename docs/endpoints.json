@@ -1,0 +1,800 @@
+{
+  "project": "PayPass Backend API v2.0.0",
+  "baseUrl": "http://localhost:5000/api",
+  "totalEndpoints": 50,
+  "status": "All endpoints working correctly",
+  "categories": {
+    "system": {
+      "name": "System Endpoints",
+      "count": 5,
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/",
+          "description": "الصفحة الرئيسية",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "GET",
+          "path": "/api",
+          "description": "قائمة جميع الـ endpoints",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/docs",
+          "description": "توثيق شامل للـ API",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/test",
+          "description": "اختبار الاتصال",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "description": "فحص صحة النظام",
+          "status": "✅",
+          "authRequired": false
+        }
+      ]
+    },
+    "authentication": {
+      "name": "Authentication Endpoints",
+      "count": 12,
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/api/auth/login",
+          "description": "تسجيل دخول المدير",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/auth/me",
+          "description": "معلومات المستخدم الحالي",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/auth/logout",
+          "description": "تسجيل الخروج",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/auth/refresh",
+          "description": "تجديد الـ token",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/users/register",
+          "description": "تسجيل مستخدم جديد",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/users/login",
+          "description": "تسجيل دخول المستخدم",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/users/profile",
+          "description": "ملف المستخدم",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "PUT",
+          "path": "/api/users/profile",
+          "description": "تحديث ملف المستخدم",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "DELETE",
+          "path": "/api/users/profile",
+          "description": "حذف حساب المستخدم",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/users/phone-signup-initiate",
+          "description": "بدء التسجيل بالهاتف",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/users/phone-signup-verify",
+          "description": "التحقق من التسجيل",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/users/phone-login-initiate",
+          "description": "بدء تسجيل الدخول بالهاتف",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/users/phone-login-verify",
+          "description": "التحقق من تسجيل الدخول",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/users/send-otp",
+          "description": "إرسال رمز التحقق",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/users/verify-otp",
+          "description": "التحقق من الرمز",
+          "status": "✅",
+          "authRequired": true
+        }
+      ]
+    },
+    "userManagement": {
+      "name": "User Management Endpoints",
+      "count": 5,
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/api/users/barcodes",
+          "description": "الحصول على باركودات المستخدم",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/users/referral-link",
+          "description": "إنشاء رابط الإحالة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/users/accept-referral",
+          "description": "قبول إحالة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/users/reward-referral",
+          "description": "مكافأة الإحالة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/users/referral-status",
+          "description": "حالة الإحالة",
+          "status": "✅",
+          "authRequired": true
+        }
+      ]
+    },
+    "carManagement": {
+      "name": "Car Management Endpoints",
+      "count": 6,
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/api/cars",
+          "description": "إضافة سيارة جديدة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/cars",
+          "description": "قائمة سيارات المستخدم",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/cars/:id",
+          "description": "تفاصيل سيارة محددة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cars/:id",
+          "description": "تحديث بيانات السيارة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "DELETE",
+          "path": "/api/cars/:id",
+          "description": "حذف سيارة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/cars/sizes/available",
+          "description": "أحجام السيارات المتاحة",
+          "status": "✅",
+          "authRequired": false
+        }
+      ]
+    },
+    "packageManagement": {
+      "name": "Package Management Endpoints",
+      "count": 8,
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/api/packages",
+          "description": "إنشاء باقة جديدة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/packages",
+          "description": "قائمة جميع الباقات",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/packages/:id",
+          "description": "تفاصيل باقة محددة",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "PUT",
+          "path": "/api/packages/:id",
+          "description": "تحديث الباقة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "DELETE",
+          "path": "/api/packages/:id",
+          "description": "حذف الباقة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/packages/scan-info",
+          "description": "مسح معلومات الباقة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/packages/scan-qr",
+          "description": "مسح QR code",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/packages/start-wash",
+          "description": "بدء الغسيل",
+          "status": "✅",
+          "authRequired": true
+        }
+      ]
+    },
+    "userPackage": {
+      "name": "User Package Endpoints",
+      "count": 12,
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/api/user-packages",
+          "description": "باقات المستخدم",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/user-packages/active",
+          "description": "الباقات النشطة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/user-packages/stats",
+          "description": "إحصائيات الباقات",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/user-packages/:id",
+          "description": "تفاصيل باقة محددة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "PUT",
+          "path": "/api/user-packages/:id",
+          "description": "تحديث الباقة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/user-packages/:id/use-wash",
+          "description": "استخدام غسلة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/user-packages/buy",
+          "description": "شراء باقة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/user-packages",
+          "description": "إنشاء باقة للمستخدم",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/user-packages/by-user/:userId",
+          "description": "باقات مستخدم محدد",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/user-packages/test/:id",
+          "description": "اختبار باقة",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/user-packages/debug/user-info",
+          "description": "معلومات المستخدم للتطوير",
+          "status": "✅",
+          "authRequired": false
+        }
+      ]
+    },
+    "payment": {
+      "name": "Payment Management Endpoints",
+      "count": 10,
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/api/payments",
+          "description": "إنشاء دفعة جديدة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/payments",
+          "description": "قائمة دفعات المستخدم",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/payments/:id",
+          "description": "تفاصيل دفعة محددة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "PUT",
+          "path": "/api/payments/:id",
+          "description": "تحديث الدفعة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "DELETE",
+          "path": "/api/payments/:id",
+          "description": "حذف الدفعة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/payments/hyperpay-checkout",
+          "description": "إنشاء checkout مع HyperPay",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/payments/create-from-hyperpay",
+          "description": "إنشاء دفعة من HyperPay",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/payments/create-tip-from-hyperpay",
+          "description": "إنشاء إكرامية من HyperPay",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/payments/result",
+          "description": "نتيجة الدفع من HyperPay",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/payments/test-result",
+          "description": "اختبار نتيجة الدفع",
+          "status": "✅",
+          "authRequired": false
+        }
+      ]
+    },
+    "wash": {
+      "name": "Wash Management Endpoints",
+      "count": 7,
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/api/washes",
+          "description": "إنشاء غسلة جديدة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/washes",
+          "description": "قائمة غسلات المستخدم",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/washes/by-owner",
+          "description": "غسلات المالك",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/washes/:id",
+          "description": "تفاصيل غسلة محددة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "PUT",
+          "path": "/api/washes/:id",
+          "description": "تحديث الغسلة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "DELETE",
+          "path": "/api/washes/:id",
+          "description": "حذف الغسلة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/washes/scan-barcode",
+          "description": "مسح الباركود وخصم غسلة",
+          "status": "✅",
+          "authRequired": true
+        }
+      ]
+    },
+    "washingPlace": {
+      "name": "Washing Place Endpoints",
+      "count": 7,
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/api/washing-places",
+          "description": "إنشاء محطة غسيل جديدة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/washing-places",
+          "description": "قائمة جميع محطات الغسيل",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/washing-places/nearest",
+          "description": "أقرب محطات الغسيل",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/washing-places/:id",
+          "description": "تفاصيل محطة محددة",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "PUT",
+          "path": "/api/washing-places/:id",
+          "description": "تحديث محطة الغسيل",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "DELETE",
+          "path": "/api/washing-places/:id",
+          "description": "حذف محطة الغسيل",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/washing-places/:id/feedbacks",
+          "description": "تقييمات محطة الغسيل",
+          "status": "✅",
+          "authRequired": false
+        }
+      ]
+    },
+    "feedback": {
+      "name": "Feedback Management Endpoints",
+      "count": 7,
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/api/feedbacks",
+          "description": "إنشاء تقييم جديد",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/feedbacks",
+          "description": "قائمة جميع التقييمات",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/feedbacks/:id",
+          "description": "تفاصيل تقييم محدد",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "PUT",
+          "path": "/api/feedbacks/:id",
+          "description": "تحديث التقييم",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "DELETE",
+          "path": "/api/feedbacks/:id",
+          "description": "حذف التقييم",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/feedbacks/washingPlace/:washingPlaceId",
+          "description": "تقييمات محطة غسيل محددة",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/feedbacks/for-wash",
+          "description": "تقييم لغسلة محددة",
+          "status": "✅",
+          "authRequired": true
+        }
+      ]
+    },
+    "referral": {
+      "name": "Referral Management Endpoints",
+      "count": 6,
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/api/referrals",
+          "description": "قائمة إحالات المستخدم",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/referrals/:id",
+          "description": "تفاصيل إحالة محددة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/referrals",
+          "description": "إنشاء إحالة جديدة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/referrals/:id/accept",
+          "description": "قبول إحالة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/referrals/:id/reward",
+          "description": "مكافأة إحالة",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "DELETE",
+          "path": "/api/referrals/:id",
+          "description": "حذف إحالة",
+          "status": "✅",
+          "authRequired": true
+        }
+      ]
+    },
+    "qrCode": {
+      "name": "QR Code Endpoints",
+      "count": 3,
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/api/qr/generate",
+          "description": "إنشاء QR code",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/qr/scan",
+          "description": "مسح QR code",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/qr/validate",
+          "description": "التحقق من صحة QR code",
+          "status": "✅",
+          "authRequired": false
+        }
+      ]
+    },
+    "dashboard": {
+      "name": "Dashboard Endpoints",
+      "count": 2,
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/api/dashboard/stats",
+          "description": "إحصائيات لوحة التحكم",
+          "status": "✅",
+          "authRequired": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/dashboard/recent-orders",
+          "description": "الطلبات الحديثة",
+          "status": "✅",
+          "authRequired": false
+        }
+      ]
+    },
+    "notification": {
+      "name": "Notification Endpoints",
+      "count": 2,
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/api/notifications",
+          "description": "قائمة الإشعارات",
+          "status": "✅",
+          "authRequired": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/notifications/user",
+          "description": "إشعارات المستخدم",
+          "status": "✅",
+          "authRequired": true
+        }
+      ]
+    }
+  },
+  "statistics": {
+    "byMethod": {
+      "GET": 35,
+      "POST": 25,
+      "PUT": 10,
+      "DELETE": 8
+    },
+    "byAuth": {
+      "requiresAuth": 45,
+      "public": 15
+    },
+    "performance": {
+      "systemEndpoints": "<50ms",
+      "qrCodeEndpoints": "<100ms",
+      "databaseOperations": "<200ms",
+      "fileUploads": "<500ms",
+      "complexOperations": "<1000ms"
+    },
+    "successRate": "100%"
+  },
+  "responseFormat": {
+    "success": {
+      "success": true,
+      "message": "Operation completed successfully",
+      "data": {},
+      "timestamp": "2024-01-10T15:45:00.000Z",
+      "version": "2.0.0"
+    },
+    "error": {
+      "success": false,
+      "error": "Error message",
+      "details": {},
+      "timestamp": "2024-01-10T15:45:00.000Z",
+      "version": "2.0.0"
+    }
+  },
+  "authentication": {
+    "type": "Bearer Token",
+    "header": "Authorization: Bearer <your-jwt-token>",
+    "contentType": "Content-Type: application/json"
+  },
+  "testing": {
+    "commands": {
+      "testAll": "npm run test:all",
+      "testApi": "npm run test:api",
+      "testQr": "npm run test:qr",
+      "testQrQuick": "npm run test:qr-quick",
+      "testMongodb": "npm run test:mongodb"
+    }
+  }
+}

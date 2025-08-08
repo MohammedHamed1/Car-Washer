@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const notificationController = require('./notification.controller');
+const notificationController = require('../../controllers/notification.controller');
 const auth = require('../../middleware/auth');
 
 // Get all notifications for current user

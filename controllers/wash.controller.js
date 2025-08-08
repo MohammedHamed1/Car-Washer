@@ -1,8 +1,8 @@
-const UserPackage = require('../package/userPackage.model');
-const Package = require('../package/package.model');
-const Car = require('../car/car.model');
-const Wash = require('./wash.model');
-const { sendNotification } = require('../../services/notification');
+const UserPackage = require('../models/userPackage.model');
+const Package = require('../models/package.model');
+const Car = require('../models/car.model');
+const Wash = require('../models/wash.model');
+const { sendNotification } = require('../services/notification');
 
 exports.createWash = async (req, res) => {
   try {

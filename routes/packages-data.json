@@ -1,0 +1,273 @@
+{
+  "packages": [
+    {
+      "_id": "basic_package_001",
+      "type": "basic",
+      "name": "الباقة الأساسية",
+      "nameEn": "Basic Package",
+      "description": "مناسبة للاستخدام العادي - 5 غسلات بجودة عالية",
+      "descriptionEn": "Suitable for regular use - 5 high-quality washes",
+      "price": 150,
+      "originalPrice": 235,
+      "savings": 85,
+      "washes": 5,
+      "paidWashes": 4,
+      "freeWashes": 1,
+      "duration": 30,
+      "status": "active",
+      "icon": "Shield",
+      "color": "green",
+      "isPopular": false,
+      "isBestValue": false,
+      "isVip": false,
+      "recommendedFor": "للأفراد العاديين",
+      "recommendedForEn": "For regular individuals",
+      "features": [
+        "4 غسلات باستخدام صابون إيطالي فاخر عالي الجودة",
+        "غسيل بطبقتين من الصابون لضمان نظافة عميقة ولمعان يدوم",
+        "غسلة إضافية مجانية، ليصبح إجمالي الغسلات: 5",
+        "إجمالي التوفير: 85 ريال سعودي",
+        "مدة الصلاحية: 30 يوم من تاريخ الشراء"
+      ],
+      "featuresEn": [
+        "4 washes using premium Italian soap",
+        "Two-layer washing for deep cleaning and lasting shine",
+        "1 free wash, total washes: 5",
+        "Total savings: 85 SAR",
+        "Validity period: 30 days from purchase date"
+      ],
+      "carPrices": {
+        "small": 150,
+        "medium": 200,
+        "large": 250
+      },
+      "carPricesOriginal": {
+        "small": 235,
+        "medium": 285,
+        "large": 335
+      },
+      "carPricesSavings": {
+        "small": 85,
+        "medium": 85,
+        "large": 85
+      },
+      "createdAt": "2024-01-15T10:00:00.000Z",
+      "updatedAt": "2024-01-15T10:00:00.000Z",
+      "createdBy": "admin",
+      "isActive": true,
+      "sortOrder": 1
+    },
+    {
+      "_id": "advanced_package_002",
+      "type": "advanced",
+      "name": "الباقة المتقدمة",
+      "nameEn": "Advanced Package",
+      "description": "مناسبة للاستخدام المتوسط - 10 غسلات بجودة فائقة",
+      "descriptionEn": "Suitable for moderate use - 10 premium quality washes",
+      "price": 280,
+      "originalPrice": 420,
+      "savings": 140,
+      "washes": 10,
+      "paidWashes": 8,
+      "freeWashes": 2,
+      "duration": 30,
+      "status": "active",
+      "icon": "Zap",
+      "color": "blue",
+      "isPopular": true,
+      "isBestValue": false,
+      "isVip": false,
+      "recommendedFor": "للأسر المتوسطة",
+      "recommendedForEn": "For medium families",
+      "features": [
+        "8 غسلات باستخدام صابون إيطالي فاخر يمنح سيارتك العناية التي تستحقها",
+        "غسيل بطبقتين من الصابون لضمان نظافة عميقة ولمعان يدوم",
+        "غسلتان مجانيتان، ليصبح إجمالي الغسلات: 10",
+        "إجمالي التوفير: 140 ريال سعودي",
+        "مدة الصلاحية: 30 يوم من تاريخ الشراء"
+      ],
+      "featuresEn": [
+        "8 washes using premium Italian soap for your car's deserved care",
+        "Two-layer washing for deep cleaning and lasting shine",
+        "2 free washes, total washes: 10",
+        "Total savings: 140 SAR",
+        "Validity period: 30 days from purchase date"
+      ],
+      "carPrices": {
+        "small": 280,
+        "medium": 350,
+        "large": 420
+      },
+      "carPricesOriginal": {
+        "small": 420,
+        "medium": 490,
+        "large": 560
+      },
+      "carPricesSavings": {
+        "small": 140,
+        "medium": 140,
+        "large": 140
+      },
+      "createdAt": "2024-01-15T10:00:00.000Z",
+      "updatedAt": "2024-01-15T10:00:00.000Z",
+      "createdBy": "admin",
+      "isActive": true,
+      "sortOrder": 2
+    },
+    {
+      "_id": "premium_package_003",
+      "type": "premium",
+      "name": "الباقة الشاملة",
+      "nameEn": "Premium Package",
+      "description": "مناسبة للاستخدام المكثف - 18 غسلة بجودة استثنائية",
+      "descriptionEn": "Suitable for intensive use - 18 exceptional quality washes",
+      "price": 490,
+      "originalPrice": 770,
+      "savings": 280,
+      "washes": 18,
+      "paidWashes": 14,
+      "freeWashes": 4,
+      "duration": 30,
+      "status": "active",
+      "icon": "Star",
+      "color": "purple",
+      "isPopular": false,
+      "isBestValue": true,
+      "isVip": false,
+      "recommendedFor": "للمستخدمين المكثفين",
+      "recommendedForEn": "For intensive users",
+      "features": [
+        "14 غسلة باستخدام صابون إيطالي فاخر يوفر عناية فائقة بسيارتك",
+        "غسيل بطبقتين من الصابون لضمان إزالة الأوساخ بفعالية وحماية طويلة الأمد",
+        "4 غسلات مجانية، ليصبح إجمالي الغسلات: 18",
+        "إجمالي التوفير: 280 ريال سعودي",
+        "مدة الصلاحية: 30 يوم من تاريخ الشراء"
+      ],
+      "featuresEn": [
+        "14 washes using premium Italian soap for exceptional car care",
+        "Two-layer washing for effective dirt removal and long-term protection",
+        "4 free washes, total washes: 18",
+        "Total savings: 280 SAR",
+        "Validity period: 30 days from purchase date"
+      ],
+      "carPrices": {
+        "small": 490,
+        "medium": 600,
+        "large": 720
+      },
+      "carPricesOriginal": {
+        "small": 770,
+        "medium": 880,
+        "large": 1000
+      },
+      "carPricesSavings": {
+        "small": 280,
+        "medium": 280,
+        "large": 280
+      },
+      "createdAt": "2024-01-15T10:00:00.000Z",
+      "updatedAt": "2024-01-15T10:00:00.000Z",
+      "createdBy": "admin",
+      "isActive": true,
+      "sortOrder": 3
+    },
+    {
+      "_id": "vip_package_004",
+      "type": "vip",
+      "name": "باقة VIP",
+      "nameEn": "VIP Package",
+      "description": "مخصصة للفنادق فقط - خدمة VIP متميزة",
+      "descriptionEn": "Exclusive for hotels only - Premium VIP service",
+      "price": 150,
+      "originalPrice": 235,
+      "savings": 85,
+      "washes": 1,
+      "paidWashes": 1,
+      "freeWashes": 0,
+      "duration": 30,
+      "status": "active",
+      "icon": "Crown",
+      "color": "gold",
+      "isPopular": false,
+      "isBestValue": false,
+      "isVip": true,
+      "recommendedFor": "للفنادق والضيافة",
+      "recommendedForEn": "For hotels and hospitality",
+      "features": [
+        "1 غسلة VIP فقط",
+        "غسيل شامل تشمل الموقف والفالية",
+        "خدمة VIP متميزة",
+        "صالح في الفنادق المحددة فقط",
+        "خدمة متميزة ضمان الجودة",
+        "إجمالي التوفير: 85 ريال سعودي"
+      ],
+      "featuresEn": [
+        "1 VIP wash only",
+        "Comprehensive washing including parking and valet",
+        "Premium VIP service",
+        "Valid in designated hotels only",
+        "Premium service with quality guarantee",
+        "Total savings: 85 SAR"
+      ],
+      "carPrices": {
+        "small": 150,
+        "medium": 150,
+        "large": 150
+      },
+      "carPricesOriginal": {
+        "small": 235,
+        "medium": 235,
+        "large": 235
+      },
+      "carPricesSavings": {
+        "small": 85,
+        "medium": 85,
+        "large": 85
+      },
+      "createdAt": "2024-01-15T10:00:00.000Z",
+      "updatedAt": "2024-01-15T10:00:00.000Z",
+      "createdBy": "admin",
+      "isActive": true,
+      "sortOrder": 4
+    }
+  ],
+  "metadata": {
+    "totalPackages": 4,
+    "exportDate": "2025-08-07T22:02:30.122Z",
+    "version": "1.0",
+    "description": "Car wash packages data stored in JSON file",
+    "schema": {
+      "_id": "Unique identifier for the package",
+      "type": "Package type (basic, advanced, premium, vip)",
+      "name": "Package name in Arabic",
+      "nameEn": "Package name in English",
+      "description": "Package description in Arabic",
+      "descriptionEn": "Package description in English",
+      "price": "Base price for small car",
+      "originalPrice": "Original price before discount",
+      "savings": "Amount saved",
+      "washes": "Total number of washes",
+      "paidWashes": "Number of paid washes",
+      "freeWashes": "Number of free washes",
+      "duration": "Validity period in days",
+      "status": "Package status (active/inactive)",
+      "icon": "Icon name for display",
+      "color": "Color theme for UI",
+      "isPopular": "Whether package is marked as popular",
+      "isBestValue": "Whether package is marked as best value",
+      "isVip": "Whether package is VIP only",
+      "recommendedFor": "Target audience in Arabic",
+      "recommendedForEn": "Target audience in English",
+      "features": "Array of features in Arabic",
+      "featuresEn": "Array of features in English",
+      "carPrices": "Prices for different car sizes",
+      "carPricesOriginal": "Original prices for different car sizes",
+      "carPricesSavings": "Savings for different car sizes",
+      "createdAt": "Creation timestamp",
+      "updatedAt": "Last update timestamp",
+      "createdBy": "User who created the package",
+      "isActive": "Whether package is active",
+      "sortOrder": "Display order"
+    }
+  }
+}

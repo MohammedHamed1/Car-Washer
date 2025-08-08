@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const packageController = require('./package.controller');
+const packageController = require('../../controllers/package.controller');
 const auth = require('../../middleware/auth');
 
 router.post('/',  packageController.createPackage);

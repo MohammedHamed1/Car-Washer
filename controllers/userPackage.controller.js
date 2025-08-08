@@ -1,6 +1,6 @@
-const UserPackage = require('./userPackage.model');
-const User = require('../user/user.model');
-const Package = require('./package.model');
+const UserPackage = require('../models/userPackage.model');
+const User = require('../models/user.model');
+const Package = require('../models/package.model');
 
 // Get all user packages for the current user
 exports.getUserPackages = async (req, res) => {
@@ -250,8 +250,8 @@ exports.buyPackage = async (req, res) => {
     const { packageId, userId } = req.body;
     
     // Find the package
-    const package = await Package.findById(packageId);
-    if (!package) {
+    const packageData = await Package.findById(packageId);
+    if (!packageData) {
       return res.status(404).json({ error: 'Package not found' });
     }
     
@@ -259,8 +259,8 @@ exports.buyPackage = async (req, res) => {
     const userPackage = new UserPackage({
       user: userId || req.user._id,
       package: packageId,
-      washesLeft: package.washes,
-      expiry: new Date(Date.now() + package.duration * 24 * 60 * 60 * 1000), // Convert days to milliseconds
+      washesLeft: packageData.washes,
+      expiry: new Date(Date.now() + packageData.duration * 24 * 60 * 60 * 1000), // Convert days to milliseconds
       status: 'active'
     });
     

@@ -1,0 +1,1063 @@
+{
+	"info": {
+		"_postman_id": "paypass-api-collection",
+		"name": "PayPass API Collection",
+		"description": "Complete API collection for PayPass Car Wash Backend with HyperPay integration",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "🔐 Authentication",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"test@example.com\",\n  \"phone\": \"+966501234567\",\n  \"password\": \"testpassword123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/register",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "register"]
+						}
+					}
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"testpassword123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "login"]
+						},
+						"event": [
+							{
+								"listen": "test",
+								"script": {
+									"exec": [
+										"if (pm.response.code === 200) {",
+										"    const response = pm.response.json();",
+										"    if (response.token) {",
+										"        pm.environment.set('auth_token', response.token);",
+										"        console.log('Token saved:', response.token);",
+										"    }",
+										"}"
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "🚗 Car Module",
+			"item": [
+				{
+					"name": "Create Car",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"plateNumber\": \"ABC123\",\n  \"brand\": \"Toyota\",\n  \"model\": \"Camry\",\n  \"year\": 2020,\n  \"color\": \"White\",\n  \"size\": \"medium\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/cars",
+							"host": ["{{base_url}}"],
+							"path": ["cars"]
+						}
+					}
+				},
+				{
+					"name": "Get All Cars",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/cars",
+							"host": ["{{base_url}}"],
+							"path": ["cars"]
+						}
+					}
+				},
+				{
+					"name": "Get Car by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/cars/{{car_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["cars", "{{car_id}}"]
+						}
+					}
+				},
+				{
+					"name": "Update Car",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"plateNumber\": \"XYZ789\",\n  \"brand\": \"Honda\",\n  \"model\": \"Civic\",\n  \"year\": 2021,\n  \"color\": \"Black\",\n  \"size\": \"small\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/cars/{{car_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["cars", "{{car_id}}"]
+						}
+					}
+				},
+				{
+					"name": "Delete Car",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/cars/{{car_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["cars", "{{car_id}}"]
+						}
+					}
+				},
+				{
+					"name": "Get Available Sizes",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/cars/sizes/available",
+							"host": ["{{base_url}}"],
+							"path": ["cars", "sizes", "available"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "📦 Package Module",
+			"item": [
+				{
+					"name": "Create Package",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Premium Package\",\n  \"price\": 100,\n  \"washes\": 10,\n  \"duration\": 30,\n  \"description\": \"Premium car wash package\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/packages",
+							"host": ["{{base_url}}"],
+							"path": ["packages"]
+						}
+					}
+				},
+				{
+					"name": "Get All Packages",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/packages",
+							"host": ["{{base_url}}"],
+							"path": ["packages"]
+						}
+					}
+				},
+				{
+					"name": "Get Package by ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/packages/{{package_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["packages", "{{package_id}}"]
+						}
+					}
+				},
+				{
+					"name": "Update Package",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Updated Premium Package\",\n  \"price\": 120,\n  \"washes\": 12,\n  \"duration\": 35,\n  \"description\": \"Updated premium car wash package\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/packages/{{package_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["packages", "{{package_id}}"]
+						}
+					}
+				},
+				{
+					"name": "Delete Package",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/packages/{{package_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["packages", "{{package_id}}"]
+						}
+					}
+				},
+				{
+					"name": "Scan Package Info",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"qrCode\": \"package_qr_code_here\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/packages/scan-info",
+							"host": ["{{base_url}}"],
+							"path": ["packages", "scan-info"]
+						}
+					}
+				},
+				{
+					"name": "Scan QR Code",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"qrCode\": \"qr_code_here\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/packages/scan-qr",
+							"host": ["{{base_url}}"],
+							"path": ["packages", "scan-qr"]
+						}
+					}
+				},
+				{
+					"name": "Start Wash",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"packageId\": \"{{package_id}}\",\n  \"carId\": \"{{car_id}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/packages/start-wash",
+							"host": ["{{base_url}}"],
+							"path": ["packages", "start-wash"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "💳 Payment Module",
+			"item": [
+				{
+					"name": "Create Payment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"amount\": 100,\n  \"currency\": \"SAR\",\n  \"paymentMethod\": \"card\",\n  \"packageId\": \"{{package_id}}\",\n  \"customerData\": {\n    \"email\": \"test@example.com\",\n    \"givenName\": \"Test\",\n    \"surname\": \"User\",\n    \"street\": \"123 Test Street\",\n    \"city\": \"Riyadh\",\n    \"state\": \"Riyadh\",\n    \"country\": \"SA\",\n    \"postcode\": \"12345\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/payments",
+							"host": ["{{base_url}}"],
+							"path": ["payments"]
+						}
+					}
+				},
+				{
+					"name": "Get All Payments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/payments",
+							"host": ["{{base_url}}"],
+							"path": ["payments"]
+						}
+					}
+				},
+				{
+					"name": "Get Payment by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/payments/{{payment_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["payments", "{{payment_id}}"]
+						}
+					}
+				},
+				{
+					"name": "HyperPay Checkout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"amount\": 50,\n  \"paymentType\": \"card\",\n  \"customerData\": {\n    \"email\": \"test@example.com\",\n    \"givenName\": \"Test\",\n    \"surname\": \"User\",\n    \"street\": \"123 Test Street\",\n    \"city\": \"Riyadh\",\n    \"state\": \"Riyadh\",\n    \"country\": \"SA\",\n    \"postcode\": \"12345\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/payments/hyperpay-checkout",
+							"host": ["{{base_url}}"],
+							"path": ["payments", "hyperpay-checkout"]
+						}
+					}
+				},
+				{
+					"name": "Apple Pay Checkout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"amount\": 50,\n  \"paymentType\": \"applepay\",\n  \"customerData\": {\n    \"email\": \"test@example.com\",\n    \"givenName\": \"Test\",\n    \"surname\": \"User\",\n    \"street\": \"123 Test Street\",\n    \"city\": \"Riyadh\",\n    \"state\": \"Riyadh\",\n    \"country\": \"SA\",\n    \"postcode\": \"12345\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/payments/hyperpay-checkout",
+							"host": ["{{base_url}}"],
+							"path": ["payments", "hyperpay-checkout"]
+						}
+					}
+				},
+				{
+					"name": "Create Payment from HyperPay",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"checkoutId\": \"{{checkout_id}}\",\n  \"packageId\": \"{{package_id}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/payments/create-from-hyperpay",
+							"host": ["{{base_url}}"],
+							"path": ["payments", "create-from-hyperpay"]
+						}
+					}
+				},
+				{
+					"name": "Create Tip from HyperPay",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"checkoutId\": \"{{checkout_id}}\",\n  \"amount\": 10,\n  \"washId\": \"{{wash_id}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/payments/create-tip-from-hyperpay",
+							"host": ["{{base_url}}"],
+							"path": ["payments", "create-tip-from-hyperpay"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "📝 Feedback Module",
+			"item": [
+				{
+					"name": "Create Feedback",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"rating\": 5,\n  \"comment\": \"Excellent service!\",\n  \"washingPlaceId\": \"{{washing_place_id}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/feedback",
+							"host": ["{{base_url}}"],
+							"path": ["feedback"]
+						}
+					}
+				},
+				{
+					"name": "Get All Feedback",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/feedback",
+							"host": ["{{base_url}}"],
+							"path": ["feedback"]
+						}
+					}
+				},
+				{
+					"name": "Get Feedback by ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/feedback/{{feedback_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["feedback", "{{feedback_id}}"]
+						}
+					}
+				},
+				{
+					"name": "Update Feedback",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"rating\": 4,\n  \"comment\": \"Updated comment\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/feedback/{{feedback_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["feedback", "{{feedback_id}}"]
+						}
+					}
+				},
+				{
+					"name": "Delete Feedback",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/feedback/{{feedback_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["feedback", "{{feedback_id}}"]
+						}
+					}
+				},
+				{
+					"name": "Get Feedback by Washing Place",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/feedback/washingPlace/{{washing_place_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["feedback", "washingPlace", "{{washing_place_id}}"]
+						}
+					}
+				},
+				{
+					"name": "Create Feedback for Wash",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"rating\": 5,\n  \"comment\": \"Great wash!\",\n  \"washId\": \"{{wash_id}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/feedback/for-wash",
+							"host": ["{{base_url}}"],
+							"path": ["feedback", "for-wash"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "🔔 Notification Module",
+			"item": [
+				{
+					"name": "Get All Notifications",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/notifications",
+							"host": ["{{base_url}}"],
+							"path": ["notifications"]
+						}
+					}
+				},
+				{
+					"name": "Get Notification by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/notifications/{{notification_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["notifications", "{{notification_id}}"]
+						}
+					}
+				},
+				{
+					"name": "Create Notification",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Test Notification\",\n  \"message\": \"This is a test notification\",\n  \"type\": \"info\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/notifications",
+							"host": ["{{base_url}}"],
+							"path": ["notifications"]
+						}
+					}
+				},
+				{
+					"name": "Mark Notification as Read",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/notifications/{{notification_id}}/mark-read",
+							"host": ["{{base_url}}"],
+							"path": ["notifications", "{{notification_id}}", "mark-read"]
+						}
+					}
+				},
+				{
+					"name": "Mark All Notifications as Read",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/notifications/mark-all-read",
+							"host": ["{{base_url}}"],
+							"path": ["notifications", "mark-all-read"]
+						}
+					}
+				},
+				{
+					"name": "Delete Notification",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/notifications/{{notification_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["notifications", "{{notification_id}}"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "👥 UserPackage Module",
+			"item": [
+				{
+					"name": "Get User Packages by User ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/userPackages/by-user/{{user_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["userPackages", "by-user", "{{user_id}}"]
+						}
+					}
+				},
+				{
+					"name": "Get User Package Test",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/userPackages/test/{{user_package_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["userPackages", "test", "{{user_package_id}}"]
+						}
+					}
+				},
+				{
+					"name": "Debug User Info",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/userPackages/debug/user-info",
+							"host": ["{{base_url}}"],
+							"path": ["userPackages", "debug", "user-info"]
+						}
+					}
+				},
+				{
+					"name": "Get All User Packages",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/userPackages",
+							"host": ["{{base_url}}"],
+							"path": ["userPackages"]
+						}
+					}
+				},
+				{
+					"name": "Get Active User Packages",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/userPackages/active",
+							"host": ["{{base_url}}"],
+							"path": ["userPackages", "active"]
+						}
+					}
+				},
+				{
+					"name": "Get User Package Stats",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/userPackages/stats",
+							"host": ["{{base_url}}"],
+							"path": ["userPackages", "stats"]
+						}
+					}
+				},
+				{
+					"name": "Get User Package by ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/userPackages/{{user_package_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["userPackages", "{{user_package_id}}"]
+						}
+					}
+				},
+				{
+					"name": "Update User Package",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"remainingWashes\": 8,\n  \"isActive\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/userPackages/{{user_package_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["userPackages", "{{user_package_id}}"]
+						}
+					}
+				},
+				{
+					"name": "Use Wash",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"carId\": \"{{car_id}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/userPackages/{{user_package_id}}/use-wash",
+							"host": ["{{base_url}}"],
+							"path": ["userPackages", "{{user_package_id}}", "use-wash"]
+						}
+					}
+				},
+				{
+					"name": "Buy Package",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"packageId\": \"{{package_id}}\",\n  \"userId\": \"{{user_id}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/userPackages/buy",
+							"host": ["{{base_url}}"],
+							"path": ["userPackages", "buy"]
+						}
+					}
+				},
+				{
+					"name": "Create User Package",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"packageId\": \"{{package_id}}\",\n  \"userId\": \"{{user_id}}\",\n  \"remainingWashes\": 5,\n  \"expiryDate\": \"2024-12-31\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/userPackages",
+							"host": ["{{base_url}}"],
+							"path": ["userPackages"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "🔄 Referral Module",
+			"item": [
+				{
+					"name": "Get All Referrals",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/referrals",
+							"host": ["{{base_url}}"],
+							"path": ["referrals"]
+						}
+					}
+				},
+				{
+					"name": "Create Referral",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"referredEmail\": \"friend@example.com\",\n  \"referredName\": \"Friend Name\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/referrals",
+							"host": ["{{base_url}}"],
+							"path": ["referrals"]
+						}
+					}
+				},
+				{
+					"name": "Get Referral by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/referrals/{{referral_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["referrals", "{{referral_id}}"]
+						}
+					}
+				},
+				{
+					"name": "Update Referral",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"completed\",\n  \"rewardClaimed\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/referrals/{{referral_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["referrals", "{{referral_id}}"]
+						}
+					}
+				},
+				{
+					"name": "Delete Referral",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/referrals/{{referral_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["referrals", "{{referral_id}}"]
+						}
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:5000/api",
+			"type": "string"
+		}
+	]
+}

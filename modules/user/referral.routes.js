@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const referralController = require('./referral.controller');
+const referralController = require('../../controllers/referral.controller');
 const auth = require('../../middleware/auth');
 
 // Get all referrals for current user

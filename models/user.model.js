@@ -7,13 +7,17 @@ const userSchema = new mongoose.Schema({
   phone: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   username:{ type: String, required: true },
-  role: { type: String, enum: ['owner', 'user'], default: 'user' },
+  role: { type: String, enum: ['owner', 'user', 'admin', 'employee'], default: 'user' },
   referralCode: { type: String, unique: true },
   referredBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   notifications: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Notification' }],
   otp: { type: String },
   otpExpires: { type: Date },
   cars: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Car' }],
+  // Add missing fields
+  isActive: { type: Boolean, default: true },
+  isVerified: { type: Boolean, default: true },
+  status: { type: String, enum: ['active', 'inactive'], default: 'active' }
 }, { timestamps: true });
 
 userSchema.pre('save', async function (next) {

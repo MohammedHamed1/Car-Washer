@@ -1,6 +1,6 @@
 // Notification service utility
 // Integrate with SMS/email/push providers as needed
-const Notification = require('../modules/feedback/notification.model');
+const Notification = require('../models/notification.model');
 const twilio = require('twilio');
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;

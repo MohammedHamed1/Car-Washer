@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const washingPlaceController = require('./washingPlace.controller');
+const washingPlaceController = require('../../controllers/washingPlace.controller');
 const auth = require('../../middleware/auth');
-const feedbackController = require('../feedback/feedback.controller');
+const feedbackController = require('../../controllers/feedback.controller');
 
 router.post('/',  washingPlaceController.createWashingPlace);
 router.get('/', washingPlaceController.getWashingPlaces);

@@ -1,5 +1,5 @@
-const WashingPlace = require('./washingPlace.model');
-const Feedback = require('../feedback/feedback.model');
+const WashingPlace = require('../models/washingPlace.model');
+const Feedback = require('../models/feedback.model');
 
 exports.createWashingPlace = async (req, res) => {
   try {

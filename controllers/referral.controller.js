@@ -1,5 +1,5 @@
-const Referral = require('./referral.model');
-const User = require('./user.model');
+const Referral = require('../models/referral.model');
+const User = require('../models/user.model');
 
 // Get all referrals for current user
 exports.getReferrals = async (req, res) => {

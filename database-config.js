@@ -4,13 +4,18 @@ const MONGODB_CONFIG = {
   options: {
     // Modern MongoDB connection options
     maxPoolSize: 10,
-    serverSelectionTimeoutMS: 5000,
+    serverSelectionTimeoutMS: 30000, // Increased timeout
     socketTimeoutMS: 45000,
+    connectTimeoutMS: 30000, // Added connect timeout
     // Connection retry settings
     retryWrites: true,
     retryReads: true,
     // Auto index creation
     autoIndex: true,
+    // Buffer settings - Allow buffering for initial connection
+    bufferCommands: true, // Changed to true
+    // Authentication
+    authSource: 'admin'
   }
 };
 

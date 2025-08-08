@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const userPackageController = require('./userPackage.controller');
+const userPackageController = require('../../controllers/userPackage.controller');
 const auth = require('../../middleware/auth');
 
 // Get user packages by user ID (no authentication required) - MUST come before /:id

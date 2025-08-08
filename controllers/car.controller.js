@@ -1,4 +1,4 @@
-const Car = require('./car.model');
+const Car = require('../models/car.model');
 
 // إنشاء سيارة جديدة (حجم فقط)
 exports.createCar = async (req, res) => {

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../modules/user/user.model');
+const User = require('../models/user.model');
 const auth = require('../middleware/auth');
 
 // Admin Login
@@ -107,13 +107,11 @@ router.get('/me', auth, async (req, res) => {
 
     res.json({
       success: true,
-      data: {
-        user: user
-      }
+      data: user
     });
 
   } catch (error) {
-    console.error('Get current user error:', error);
+    console.error('Get user error:', error);
     res.status(500).json({
       success: false,
       message: 'خطأ في الخادم'
@@ -144,15 +142,15 @@ router.post('/refresh', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.userId);
     
-    if (!user || !user.isActive) {
-      return res.status(401).json({
+    if (!user) {
+      return res.status(404).json({
         success: false,
-        message: 'المستخدم غير موجود أو غير مفعل'
+        message: 'المستخدم غير موجود'
       });
     }
 
     // Generate new token
-    const newToken = jwt.sign(
+    const token = jwt.sign(
       { 
         userId: user._id, 
         email: user.email, 
@@ -165,7 +163,7 @@ router.post('/refresh', auth, async (req, res) => {
     res.json({
       success: true,
       data: {
-        token: newToken
+        token: token
       }
     });
 

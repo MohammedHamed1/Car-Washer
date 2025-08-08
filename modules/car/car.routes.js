@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const carController = require('./car.controller');
+const carController = require('../../controllers/car.controller');
 const auth = require('../../middleware/auth');
 
 // مسارات السيارات

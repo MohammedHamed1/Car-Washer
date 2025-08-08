@@ -1,12 +1,12 @@
-const User = require("./user.model");
+const User = require("../models/user.model");
 const jwt = require("jsonwebtoken");
-const UserPackage = require("../package/userPackage.model");
-const Package = require("../package/package.model");
-const Referral = require("./referral.model");
+const UserPackage = require("../models/userPackage.model");
+const Package = require("../models/package.model");
+const Referral = require("../models/referral.model");
 const crypto = require("crypto");
-const { generateOTP, isOTPValid } = require("../../services/otp");
-const { sendNotification } = require("../../services/notification");
-const admin = require('../../config/firebase');
+const { generateOTP, isOTPValid } = require("../services/otp");
+const { sendNotification } = require("../services/notification");
+const admin = require('../config/firebase');
 
 exports.register = async (req, res) => {
   try {

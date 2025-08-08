@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const paymentController = require('./payment.controller');
+const paymentController = require('../../controllers/payment.controller');
 const auth = require('../../middleware/auth');
 
 // Test endpoint for debugging (must come before /:id route)

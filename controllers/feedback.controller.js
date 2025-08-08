@@ -1,5 +1,5 @@
-const Feedback = require('./feedback.model');
-const Wash = require('../wash/wash.model');
+const Feedback = require('../models/feedback.model');
+const Wash = require('../models/wash.model');
 
 exports.createFeedback = async (req, res) => {
   try {

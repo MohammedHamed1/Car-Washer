@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const washController = require('./wash.controller');
+const washController = require('../../controllers/wash.controller');
 const auth = require('../../middleware/auth');
 
 router.post('/', auth, washController.createWash);
