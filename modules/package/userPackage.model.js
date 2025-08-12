@@ -5,7 +5,7 @@ const userPackageSchema = new mongoose.Schema({
   package: { type: mongoose.Schema.Types.ObjectId, ref: 'Package', required: true },
   carSize: { 
     type: String, 
-    enum: ['sedan', 'suv', 'truck', 'van', 'luxury'], 
+    enum: ['small', 'medium', 'large'],  
     required: true 
   }, // Car size category for this package
   barcode: { type: String, required: true, unique: true }, // barcode/QR code string

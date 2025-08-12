@@ -1,5 +1,5 @@
-const Feedback = require('./feedback.model');
-const Wash = require('../wash/wash.model');
+const Feedback = require("./feedback.model");
+const Wash = require("../wash/wash.model");
 
 exports.createFeedback = async (req, res) => {
   try {
@@ -13,7 +13,7 @@ exports.createFeedback = async (req, res) => {
 
 exports.getFeedbacks = async (req, res) => {
   try {
-    const feedbacks = await Feedback.find().populate('user wash washingPlace');
+    const feedbacks = await Feedback.find().populate("user wash washingPlace");
     res.json(feedbacks);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -22,8 +22,10 @@ exports.getFeedbacks = async (req, res) => {
 
 exports.getFeedback = async (req, res) => {
   try {
-    const feedback = await Feedback.findById(req.params.id).populate('user wash washingPlace');
-    if (!feedback) return res.status(404).json({ error: 'Feedback not found' });
+    const feedback = await Feedback.findById(req.params.id).populate(
+      "user wash washingPlace"
+    );
+    if (!feedback) return res.status(404).json({ error: "Feedback not found" });
     res.json(feedback);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -32,8 +34,10 @@ exports.getFeedback = async (req, res) => {
 
 exports.updateFeedback = async (req, res) => {
   try {
-    const feedback = await Feedback.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!feedback) return res.status(404).json({ error: 'Feedback not found' });
+    const feedback = await Feedback.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    if (!feedback) return res.status(404).json({ error: "Feedback not found" });
     res.json(feedback);
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -43,8 +47,8 @@ exports.updateFeedback = async (req, res) => {
 exports.deleteFeedback = async (req, res) => {
   try {
     const feedback = await Feedback.findByIdAndDelete(req.params.id);
-    if (!feedback) return res.status(404).json({ error: 'Feedback not found' });
-    res.json({ message: 'Feedback deleted' });
+    if (!feedback) return res.status(404).json({ error: "Feedback not found" });
+    res.json({ message: "Feedback deleted" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -52,7 +56,9 @@ exports.deleteFeedback = async (req, res) => {
 
 exports.getFeedbacksForWashingPlace = async (req, res) => {
   try {
-    const feedbacks = await Feedback.find({ washingPlace: req.params.washingPlaceId }).populate('user wash washingPlace');
+    const feedbacks = await Feedback.find({
+      washingPlace: req.params.washingPlaceId,
+    }).populate("user wash washingPlace");
     res.json(feedbacks);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -63,7 +69,7 @@ exports.createFeedbackForWash = async (req, res) => {
   try {
     const { washId, rating, comment, complaint, tip } = req.body;
     const wash = await Wash.findOne({ _id: washId, user: req.user._id });
-    if (!wash) return res.status(404).json({ error: 'Wash not found' });
+    if (!wash) return res.status(404).json({ error: "Wash not found" });
     // Create feedback
     const feedback = new Feedback({
       user: req.user._id,
@@ -82,4 +88,4 @@ exports.createFeedbackForWash = async (req, res) => {
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
-}; 
+};

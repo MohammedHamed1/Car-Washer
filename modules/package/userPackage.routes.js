@@ -22,7 +22,7 @@ router.get('/', userPackageController.getUserPackages);
 router.get('/active', userPackageController.getActiveUserPackages);
 
 // Get user package statistics
-router.get('/stats', userPackageController.getUserPackageStats);
+router.get('/stats', auth ,userPackageController.getUserPackageStats);
 
 // Get specific user package by ID
 router.get('/:id', userPackageController.getUserPackage);
